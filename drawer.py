@@ -1,55 +1,8 @@
-import requests
-import random
 from PIL import Image, ImageDraw, ImageFont
-import nltk
-from datetime import datetime, date
 
+# image_path="C:\\Users\\zane1\\Desktop\\Don Cheadle Bot\\the_don.png"
 
-
-def fetch_word_of_the_day(api_key):
-    url = f"https://api.wordnik.com/v4/words.json/wordOfTheDay?api_key={api_key}"
-    response = requests.get(url)
-    if response.status_code == 200:
-        data = response.json()
-        return data.get("word", None)
-    else:
-        print("Failed to fetch word of the day.")
-        return None
-
-def get_holiday_word():
-    today = date.today()  # Get the current date
-    holiday_words = {
-        "New Year's Day": ["celebrate", "party", "fireworks", "resolution"],
-        "Valentine's Day": ["love", "romance", "heart", "cupid"],
-        "Easter": ["eggs", "bunny", "chocolate", "spring"],
-        "Halloween": ["spooky", "pumpkin", "candy", "ghost"],
-        "Christmas": ["gift", "merry", "jolly", "tree"],
-        "Independence Day": ["freedom", "patriotism", "flag", "fireworks"],
-        "Thanksgiving": ["gratitude", "feast", "family", "turkey"],
-        "Memorial Day": ["remember", "honor", "sacrifice", "hero"],
-        "Labor Day": ["work", "rest", "celebration", "parade"]
-    }
-    holiday_dates = {
-        "New Year's Day": date(today.year, 1, 1),
-        "Valentine's Day": date(today.year, 2, 14),
-        "Easter": date(today.year, 3, 31),
-        "Halloween": date(today.year, 10, 31),
-        "Christmas": (date(today.year, 12, 18), date(today.year, 12, 25)),
-        "Independence Day": date(today.year, 7, 4),
-        "Thanksgiving": (date(today.year, 11, 1), date(today.year, 11, 30)),
-        "Memorial Day": date(today.year, 5, 1),  # Single day
-        "Labor Day": date(today.year, 9, 1)  # Single day
-    }
-    for holiday, date_range in holiday_dates.items():
-        if isinstance(date_range, tuple):  # Check if it's a date range
-            start_date, end_date = date_range
-            if start_date <= today <= end_date:
-                return random.choice(holiday_words[holiday])
-        elif date_range == today:  # Check if it's a single date
-            return random.choice(holiday_words[holiday])
-    return None
-
-def draw_text_on_image(text, image_path="FILES PATH FOR IMAGE",
+def draw_text_on_image(text, image_path,
                        font_size=60, fixed_font_size=60, font_color="white", outline_color="black",
                        output_path="output.jpg", outline_width=2):
     try:
@@ -106,25 +59,3 @@ def draw_text_on_image(text, image_path="FILES PATH FOR IMAGE",
 
     print(f"Text with outline added to image. Saved as: {output_path}")
 
-# Set your API key here
-api_key = "API KEY"
-
-# Fetch word of the day from the API
-word = fetch_word_of_the_day(api_key)
-
-# Choose between Wordnik word of the day and common words library
-use_wordnik_word = False  # Set to True to use Wordnik word of the day, False for common words library
-
-# Priority to holiday word if available, otherwise use word of the day
-holiday_word = get_holiday_word()
-if holiday_word:
-    draw_text_on_image(holiday_word)
-    print("Holiday word drawn:", holiday_word)
-elif word and use_wordnik_word:
-    draw_text_on_image(word)
-    print("Word of the day drawn from Wordnik:", word)
-else:
-    common_words = nltk.corpus.words.words('en')
-    random_word = random.choice(common_words)
-    draw_text_on_image(random_word)
-    print("Random word drawn from common words library:", random_word)
