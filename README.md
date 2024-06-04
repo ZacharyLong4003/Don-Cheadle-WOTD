@@ -1,9 +1,15 @@
-This is the code I used to make my don cheadle WOTD bot.
-This is a for fun bot that tweets a word once a day with the help of python anywhere.
+# Don Cheadle WOTD Bot
 
-I AM AND THIS PROJECT ARE NOT ACCOCIATED WITH DON CHEADLE IN ANY FORM. I AM NOT DON CHEADLE.
+This is the code I used to create my Don Cheadle Word of the Day (WOTD) bot. This bot tweets a word once a day with the help of PythonAnywhere.
 
-Dependencys: 
+## Disclaimer
+**I and this project are not associated with Don Cheadle in any form. I am not Don Cheadle.**
+
+## Dependencies
+
+To get this project up and running, you'll need to install the following Python packages:
+
+```sh
 pip install holidays
 pip install datetime
 pip install nltk
