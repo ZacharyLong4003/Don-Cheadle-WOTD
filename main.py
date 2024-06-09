@@ -96,7 +96,7 @@ image_path = get_holiday_image_path(holiday) if holiday else default_don
 
 drawer.draw_text_on_image(word, image_path)
 
-tweet_text=tweet_text + " " + word
+tweet_text=tweet_text + " - " + word
 
 if (word[len(word)-2]=='e' or word[len(word)-2]=='o') and word[len(word)-1]=='r':
         tweet_text=tweet_text + " her? I hardly know her (I am very sorry)"
