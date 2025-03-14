@@ -10,7 +10,9 @@ This is the code I used to create my Don Cheadle Word of the Day (WOTD) bot. Thi
 To get this project up and running, you'll need to install the following Python packages:
 
 ```sh
-pip install holidays
-pip install datetime
-pip install nltk
 pip install tweepy
+pip install nltk
+pip install requests
+pip install holidays
+pip install pillow
+```
